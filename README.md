@@ -1,381 +1,579 @@
-# Software Developer Folio ⚡️ [![GitHub](https://img.shields.io/github/license/saadpasta/developer-portfolio?color=blue)](https://github.com/saadpasta/developerFolio/blob/master/LICENSE) [![GitHub stars](https://img.shields.io/github/stars/saadpasta/developerFolio)](https://github.com/saadpasta/developerFolio/stargazers)  [![All Contributors](https://img.shields.io/badge/all_contributors-4-orange.svg?style=flat-square)](#contributors)
-
-## A clean, beautiful and responsive portfolio template for Developers!
-
-
-<p align="center">
-  <kbd>
-<img src="https://user-images.githubusercontent.com/53429438/106779355-e9cd9e80-666c-11eb-9417-8a4b54441bc6.gif"></img>
-  </kbd>
-</p>
-
-
-Just change `src/portfolio.js` to get your personal portfolio. Customize portfolio theme by using your own color scheme globally in the  `src/_globalColor.scss` file. Feel free to use it as-is or personalize it as much as you want.
-
-If you'd like to **contribute** and make this much better for other users, have a look at [Issues](https://github.com/saadpasta/developerFolio/issues).
-
-Created something awesome for your fork of the portfolio and want to share it? Feel free to open a [pull request](https://github.com/saadpasta/developerFolio/pulls).
-
-## Table of Contents
-- [Sections](#sections)
-- [Getting Started](#getting-started)
-- [How to Use](#how-to-use)
-- [Linking portfolio to GitHub](#linking-portfolio-to-github)
-- [Linking blogs section to Medium](#linking-blogs-section-to-medium)
-- [Change and Customize](#change-and-customize-every-section-according-to-your-need)
-- [Deployment](#deployment)
-- [Technologies Used](#technologies-used)
-- [Illustrations](#illustrations)
-- [For the Future](#for-the-future)
-- [Contributors](#project-maintainers)
-
-## Portfolio Sections
-✔️ Summary and About me\
-✔️ Skills\
-✔️ Education\
-✔️ Work Experience\
-✔️ Open Source Projects Connected with GitHub\
-✔️ Big Projects\
-✔️ Achievements And Certifications 🏆\
-✔️ Blogs\
-✔️ Talks\
-✔️ Podcast\
-✔️ Contact me\
-✔️ Twitter Timeline\
-✔️ GitHub Profile
-
-To view a live example, **[click here](https://developerfolio.js.org/)**.
-
-
-## Getting Started
-
-These instructions will get you a copy of the project up and running on your local machine for development and testing purposes.
-
-You'll need [Git](https://git-scm.com) and [Node.js](https://nodejs.org/en/download/) (which comes with [npm](http://npmjs.com)) installed on your computer or use [Docker](https://www.docker.com/products/docker-desktop).
-
-```
-node@v10.16.0 or higher
-npm@6.9.0 or higher
-git@2.17.1 or higher
-```
-### Docker Commands
-
-```
-1) BUILD IMAGE : docker build -t developerfolio:latest .
-2) RUN IMAGE: docker run -t -p 3000:3000 developerfolio:latest
-```
-
-
-## How To Use 
-
-From your command line, clone and run developerFolio:
-
-```bash
-# Clone this repository
-git clone https://github.com/saadpasta/developerFolio.git
-
-# Go into the repository
-cd developerFolio
-
-# Setup default environment variables
-
-# For Linux
-cp env.example .env
-# For Windows
-copy env.example .env
-
-# Install dependencies
-npm install
-
-# Start a local dev server
-npm start
-```
-
-## Linking Portfolio to GitHub
-
-Generate a classic GitHub personal access token following these [instructions](https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/creating-a-personal-access-token#creating-a-personal-access-token-classic) (make sure you don't select any scope just generate a simple token). If you are using [GitHub Actions](#configuring-github-actions-recommended) to deploy your portfolio you can skip this section.
-
-1. Create a file called .env in the root directory of your project (if not done already in section: [How To Use](#how-to-use))
-
-Note: Configuring environment variables before deploying your portfolio is highly recommended as some components depend on API data. 
-
-```bash
-- DeveloperFolio
-  - node_modules
-  - public
-  - src
-  - .env         <-- create it here
-  - env.example  <-- this is the base file
-  - .gitignore
-  - package-lock.json
-  - package.json
-```
-
-2. Inside the .env file, add key `REACT_APP_GITHUB_TOKEN` and assign your GitHub token like this, also add your username as `GITHUB_USERNAME`
-
-```env
-// .env
-REACT_APP_GITHUB_TOKEN = "YOUR GITHUB TOKEN HERE"
-GITHUB_USERNAME = "YOUR GITHUB USERNAME"
-USE_GITHUB_DATA = "true"
-```
-
-Set `showGithubProfile` to true or false to show Contact Profile using GitHub, defaults to false.
-
-**Warning:** Treat your tokens like passwords and keep them secret. When working with the API, use tokens as environment variables instead of hardcoding them into your programs.
-
-Note: Open Source Projects section only show pinned items of your GitHub.
-If you are seeing something as shown below, follow these [instructions](https://docs.github.com/en/enterprise/2.13/user/articles/pinning-items-to-your-profile).
-
-![ERROR](https://i.imgur.com/Hj6mu1K.png)
-
-If the above solution still doesn't work, visit the [wiki page](https://github.com/saadpasta/developerFolio/wiki/Github-Setup-For-Open-Source-Projects).
-
-## Linking blogs section to Medium
-
-Optionally, you can link the blogs section to your medium user account:
-
-* Inside the .env file, add key `MEDIUM_USERNAME` and assign your Medium username
-
-```env
-// .env
-MEDIUM_USERNAME = "YOUR MEDIUM USERNAME"
-```
-
-* For Github Action, change the environment variable `MEDIUM_USERNAME` in `.github/workflows/deploy.yml`
-
-Set `displayMediumBlogs` to true or false in portofolio.js to display fetched Medium blogs, defaults to true.
-
-## Change and customize every section according to your need.
-
-#### Personalize page content in `/src/portfolio.js` & modify it as per your need. You will also need to modify `index.html` to change the title and metadata to provide accurate SEO for your personal portfolio.
-
-```javascript
-/* Change this file to get your Personal Porfolio */
-
-const greeting = {
-  /* Your Summary And Greeting Section */
-  title: "Hi all I'm Saad",
-  subTitle: emoji("A passionate Full Stack Software Developer 🚀"),
-  resumeLink: "https://drive.google.com/file/d/1ofFdKF_mqscH8WvXkSObnVvC9kK7Ldlu/view?usp=sharing"
-};
-
-const socialMediaLinks = {
-  /* Your Social Media Link */
-  github: "https://github.com/saadpasta",
-  linkedin: "https://www.linkedin.com/in/saadpasta/",
-  gmail: "saadpasta70@gmail.com",
-  gitlab: "https://gitlab.com/saadpasta",
-  facebook: "https://www.facebook.com/saad.pasta7"
-};
-
-
-const skillsSection = { .... }
-
-const techStack = { .... }
-
-const workExperience = { .... }
-
-const openSource = { .... }
-
-const bigProjects = { .... }
-
-const achievementSection = { .... }
-
-const blogSection = { .... }
-
-const contactInfo = { .... }
-
-const twitterDetails = { ... }
-
-```
-#### Resume upload
-To upload your own resume, simply upload a pdf to `src/containers/greeting/resume` and rename the pdf to `resume.pdf`. 
-
-#### Using Emojis
-
-For adding emoji 😃 into the texts in `Portfolio.js`, use the `emoji()` function and pass the text you need as an argument. This would help in keeping emojis compatible across different browsers and platforms.
-
-#### Customize Lottie Animations
-
-You can choose a Lottie and download it in json format from sites like [this](https://lottiefiles.com/). In `src/assets/lottie`, replace the Lottie json file you want to alter with the same file name. If you want to change the Lottie options, go to `src/components/displayLottie/DisplayLottie.js` and change the `defaultOptions` object, you can refer [lottie-react docs](https://www.npmjs.com/package/lottie-react) for more info on the `defaultOptions` object.
-
-#### Adding Twitter Time line to your Page
-Insert your Twitter username in `portfolio.js` to show your recent activity on your page.
-
-```javascript
-const twitterDetails = {
-  userName : "Your Twitter Username"
-};
-```
-Note: Don't use `@` symbol when adding username.
-
-## Deployment
-When you are done with the setup, you should host your website online.
-We highly recommend to read through the [Deploying on GitHub Pages](https://create-react-app.dev/docs/deployment/#github-pages) docs for React.
-
-#### Configuring GitHub Actions (Recommended)
-First you should enable, GitHub Actions for the repository you use.
-
-The Profile and the Repository information from GitHub is only created at the time of deploy and the site needs to be redeployed if those information needs to be updated. So, a configurable [CRON Job](https://docs.github.com/en/actions/reference/events-that-trigger-workflows#scheduled-events) is setup which deploys your site every week, so that once you update your profile on GitHub it is shown on your portfolio. You can also trigger it manually using `workflow_dispatch` event, see [this guide](https://github.blog/changelog/2020-07-06-github-actions-manual-triggers-with-workflow_dispatch) on how to do that.
-
-- When you are done with the configuration, we highly recommend to read through the [GitHub Actions Configuring a workflow](https://docs.github.com/en/actions/configuring-and-managing-workflows/configuring-a-workflow) docs.
-
-#### Deploying to GitHub Pages
-
-This section guides you to deploy your portfolio on GitHub pages.
-
-- Navigate to `package.json` and enter your domain name instead of `https://developerfolio.js.org/` in `homepage` variable. For example, if you want your site to be `https://<your-username>.github.io/developerFolio`, add the same to the homepage section of `package.json`.
-
-- In short you can also add `/devloperFolio` to `package.json` as both are exactly same. Upon doing so, you tell `create-react-app` to add the path assets accordingly.
-
-- Optionally, configure the domain. You can configure a custom domain with GitHub Pages by adding a `CNAME` file to the `public/` folder.
-
-- Follow through the guide to setup GitHub pages from the official CRA docs [here](https://create-react-app.dev/docs/deployment/#github-pages).
-
-#### Deploying to Netlify
-
-You could also host directly with Netlify by linking your own repository.
-
-[![Deploy To Netlify](https://www.netlify.com/img/deploy/button.svg)](https://app.netlify.com/start/deploy?repository=https://github.com/saadpasta/developerFolio)
-
-For more information, read [hosting on Netlify](https://create-react-app.dev/docs/deployment/#netlify).
-
-
-## Technologies Used 
-
-- [React](https://reactjs.org/)
-- [graphql](https://graphql.org/)
-- [apollo-boost](https://www.apollographql.com/docs/react/get-started/)
-- [react-twitter-embed](https://github.com/saurabhnemade/react-twitter-embed)
-- [react-easy-emoji](https://github.com/appfigures/react-easy-emoji)
-- [react-headroom](https://github.com/KyleAMathews/react-headroom)
-- [color-thief](https://github.com/lokesh/color-thief)
-
-## Illustrations
-- [UnDraw](https://undraw.co/illustrations)
-- [Lottie by Oblikweare](https://lottiefiles.com/oblikweare)
-
-
-## For the Future
-If you can help us with these. Please don't hesitate to open a [pull request](https://github.com/saadpasta/developerFolio/pulls).
-
-- Connect with LinkedIn to get Summary, Skills, Education and Experience
-
-- Move to Gatsby
-
-- Add More Sections
-
-## Project Maintainers 
-
-<table>
-  <tr>
-    <td align="center"><a href="http://saadpasta.github.io"><img src="https://avatars2.githubusercontent.com/u/23307811?v=4" width="100px;" alt=""/><br /><sub><b>Saad Pasta</b></sub></a></td>
-    <td align="center"><a href="https://github.com/kartikcho"><img src="https://avatars1.githubusercontent.com/u/48270786?v=4" width="100px;" alt=""/><br /><sub><b>Kartik Choudhary</b></sub></a></td>
-    <td align="center"><a href="https://github.com/naveen521kk"><img src="https://avatars1.githubusercontent.com/u/49693820?v=4" width="100px;" alt=""/><br /><sub><b>Naveen M K</b></sub></a></td>
-    <td align="center"><a href="http://www.muhammadhasham.com"><img src="https://avatars0.githubusercontent.com/u/17927649?v=4" width="100px;" alt=""/><br /><sub><b>Muhammad Hasham</b></sub></a></td>
-  </tr>
-</table>
-
-## Contributors 
-
-Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/docs/en/emoji-key)):
-
-<!-- ALL-CONTRIBUTORS-LIST:START - Do not remove or modify this section -->
-<!-- prettier-ignore-start -->
-<!-- markdownlint-disable -->
-<table>
-  <tbody>
-    <tr>
-      <td align="center" valign="top" width="14.28%"><a href="http://facebook.com/9inpachi"><img src="https://avatars2.githubusercontent.com/u/36920441?v=4?s=100" width="100px;" alt="Fawad Ali"/><br /><sub><b>Fawad Ali</b></sub></a><br /><a href="#ideas-9inpachi" title="Ideas, Planning, & Feedback">🤔</a> <a href="https://github.com/saadpasta/developerFolio/commits?author=9inpachi" title="Code">💻</a></td>
-      <td align="center" valign="top" width="14.28%"><a href="https://dasunnavoda.wordpress.com/"><img src="https://avatars0.githubusercontent.com/u/5556085?v=4?s=100" width="100px;" alt="Dasun Navoda"/><br /><sub><b>Dasun Navoda</b></sub></a><br /><a href="https://github.com/saadpasta/developerFolio/commits?author=IamDZN" title="Documentation">📖</a></td>
-      <td align="center" valign="top" width="14.28%"><a href="https://brian.teeman.net"><img src="https://avatars3.githubusercontent.com/u/1296369?v=4?s=100" width="100px;" alt="Brian Teeman"/><br /><sub><b>Brian Teeman</b></sub></a><br /><a href="https://github.com/saadpasta/developerFolio/commits?author=brianteeman" title="Documentation">📖</a></td>
-      <td align="center" valign="top" width="14.28%"><a href="https://rajkumaar.co.in"><img src="https://avatars1.githubusercontent.com/u/37476886?v=4?s=100" width="100px;" alt="Rajkumar S"/><br /><sub><b>Rajkumar S</b></sub></a><br /><a href="https://github.com/saadpasta/developerFolio/commits?author=rajkumaar23" title="Code">💻</a></td>
-      <td align="center" valign="top" width="14.28%"><a href="https://github.com/viveksharmaui"><img src="https://avatars1.githubusercontent.com/u/28563357?v=4?s=100" width="100px;" alt="Slim Coder"/><br /><sub><b>Slim Coder</b></sub></a><br /><a href="https://github.com/saadpasta/developerFolio/commits?author=viveksharmaui" title="Code">💻</a> <a href="https://github.com/saadpasta/developerFolio/commits?author=viveksharmaui" title="Documentation">📖</a></td>
-      <td align="center" valign="top" width="14.28%"><a href="http://msayyaf.com"><img src="https://avatars3.githubusercontent.com/u/22149734?v=4?s=100" width="100px;" alt="Mohamed Sayyaf"/><br /><sub><b>Mohamed Sayyaf</b></sub></a><br /><a href="https://github.com/saadpasta/developerFolio/commits?author=msayyaf1" title="Documentation">📖</a></td>
-      <td align="center" valign="top" width="14.28%"><a href="https://ashutosh1919.github.io"><img src="https://avatars3.githubusercontent.com/u/20843596?v=4?s=100" width="100px;" alt="Ashutosh Hathidara"/><br /><sub><b>Ashutosh Hathidara</b></sub></a><br /><a href="https://github.com/saadpasta/developerFolio/commits?author=ashutosh1919" title="Code">💻</a></td>
-    </tr>
-    <tr>
-      <td align="center" valign="top" width="14.28%"><a href="https://www.upwork.com/freelancers/~01d10c23d4ffe3c658"><img src="https://avatars0.githubusercontent.com/u/8683960?v=4?s=100" width="100px;" alt="Rizwan Jamal ⚡️"/><br /><sub><b>Rizwan Jamal ⚡️</b></sub></a><br /><a href="https://github.com/saadpasta/developerFolio/commits?author=Rizwanjamal" title="Documentation">📖</a></td>
-      <td align="center" valign="top" width="14.28%"><a href="http://www.muhammadhasham.com"><img src="https://avatars0.githubusercontent.com/u/17927649?v=4?s=100" width="100px;" alt="Muhammad Hasham"/><br /><sub><b>Muhammad Hasham</b></sub></a><br /><a href="https://github.com/saadpasta/developerFolio/commits?author=MohammadHasham" title="Code">💻</a></td>
-      <td align="center" valign="top" width="14.28%"><a href="https://sourcerer.io/joshiujjawal22"><img src="https://avatars3.githubusercontent.com/u/44023234?v=4?s=100" width="100px;" alt="UJJAWAL JOSHI"/><br /><sub><b>UJJAWAL JOSHI</b></sub></a><br /><a href="https://github.com/saadpasta/developerFolio/commits?author=joshiujjawal22" title="Code">💻</a></td>
-      <td align="center" valign="top" width="14.28%"><a href="https://github.com/palak-sethi"><img src="https://avatars2.githubusercontent.com/u/51605219?v=4?s=100" width="100px;" alt="Palak Sethi"/><br /><sub><b>Palak Sethi</b></sub></a><br /><a href="https://github.com/saadpasta/developerFolio/commits?author=palak-sethi" title="Code">💻</a></td>
-      <td align="center" valign="top" width="14.28%"><a href="https://viniciusbds.github.io/"><img src="https://avatars3.githubusercontent.com/u/34755896?v=4?s=100" width="100px;" alt="Vinicius Barbosa"/><br /><sub><b>Vinicius Barbosa</b></sub></a><br /><a href="https://github.com/saadpasta/developerFolio/commits?author=viniciusbds" title="Code">💻</a></td>
-      <td align="center" valign="top" width="14.28%"><a href="https://bharatkammakatla.github.io"><img src="https://avatars1.githubusercontent.com/u/28840761?v=4?s=100" width="100px;" alt="Bharat Kammakatla"/><br /><sub><b>Bharat Kammakatla</b></sub></a><br /><a href="#design-BharatKammakatla" title="Design">🎨</a></td>
-      <td align="center" valign="top" width="14.28%"><a href="http://bit.ly/garimasingh"><img src="https://avatars2.githubusercontent.com/u/44302373?v=4?s=100" width="100px;" alt="Garima Singh"/><br /><sub><b>Garima Singh</b></sub></a><br /><a href="https://github.com/saadpasta/developerFolio/commits?author=garimasingh128" title="Code">💻</a></td>
-    </tr>
-    <tr>
-      <td align="center" valign="top" width="14.28%"><a href="https://github.com/HenryHengZJ"><img src="https://avatars2.githubusercontent.com/u/26460777?v=4?s=100" width="100px;" alt="Henry Heng"/><br /><sub><b>Henry Heng</b></sub></a><br /><a href="https://github.com/saadpasta/developerFolio/commits?author=HenryHengZJ" title="Code">💻</a> <a href="#design-HenryHengZJ" title="Design">🎨</a></td>
-      <td align="center" valign="top" width="14.28%"><a href="https://github.com/PulkitBanta"><img src="https://avatars2.githubusercontent.com/u/43134750?v=4?s=100" width="100px;" alt="Pulkit Banta"/><br /><sub><b>Pulkit Banta</b></sub></a><br /><a href="https://github.com/saadpasta/developerFolio/commits?author=PulkitBanta" title="Code">💻</a> <a href="https://github.com/saadpasta/developerFolio/issues?q=author%3APulkitBanta" title="Bug reports">🐛</a></td>
-      <td align="center" valign="top" width="14.28%"><a href="https://github.com/AkshayCHD"><img src="https://avatars1.githubusercontent.com/u/25455546?v=4?s=100" width="100px;" alt="Akshay Kumar"/><br /><sub><b>Akshay Kumar</b></sub></a><br /><a href="https://github.com/saadpasta/developerFolio/commits?author=AkshayCHD" title="Code">💻</a> <a href="https://github.com/saadpasta/developerFolio/issues?q=author%3AAkshayCHD" title="Bug reports">🐛</a></td>
-      <td align="center" valign="top" width="14.28%"><a href="https://github.com/AmnaEjaz"><img src="https://avatars3.githubusercontent.com/u/14257959?v=4?s=100" width="100px;" alt="Amna Ejaz"/><br /><sub><b>Amna Ejaz</b></sub></a><br /><a href="https://github.com/saadpasta/developerFolio/commits?author=AmnaEjaz" title="Code">💻</a> <a href="#ideas-AmnaEjaz" title="Ideas, Planning, & Feedback">🤔</a></td>
-      <td align="center" valign="top" width="14.28%"><a href="https://github.com/parasnagpal"><img src="https://avatars0.githubusercontent.com/u/39419139?v=4?s=100" width="100px;" alt="Paras Nagpal"/><br /><sub><b>Paras Nagpal</b></sub></a><br /><a href="https://github.com/saadpasta/developerFolio/commits?author=parasnagpal" title="Code">💻</a></td>
-      <td align="center" valign="top" width="14.28%"><a href="https://sourcerer.io/sparsh-99"><img src="https://avatars0.githubusercontent.com/u/56729873?v=4?s=100" width="100px;" alt="Sparsh Garg"/><br /><sub><b>Sparsh Garg</b></sub></a><br /><a href="https://github.com/saadpasta/developerFolio/commits?author=sparsh-99" title="Code">💻</a></td>
-      <td align="center" valign="top" width="14.28%"><a href="http://aashutosh.dev"><img src="https://avatars2.githubusercontent.com/u/21199234?v=4?s=100" width="100px;" alt="Aashutosh Rathi"/><br /><sub><b>Aashutosh Rathi</b></sub></a><br /><a href="https://github.com/saadpasta/developerFolio/commits?author=aashutoshrathi" title="Code">💻</a></td>
-    </tr>
-    <tr>
-      <td align="center" valign="top" width="14.28%"><a href="https://abhishekashyap.studio/"><img src="https://avatars3.githubusercontent.com/u/29458374?v=4?s=100" width="100px;" alt="Abhishek Kashyap"/><br /><sub><b>Abhishek Kashyap</b></sub></a><br /><a href="https://github.com/saadpasta/developerFolio/issues?q=author%3Aabhishekashyap" title="Bug reports">🐛</a></td>
-      <td align="center" valign="top" width="14.28%"><a href="https://github.com/lcsvcn"><img src="https://avatars1.githubusercontent.com/u/6011385?v=4?s=100" width="100px;" alt="Lucas V C Nicolau"/><br /><sub><b>Lucas V C Nicolau</b></sub></a><br /><a href="https://github.com/saadpasta/developerFolio/commits?author=lcsvcn" title="Documentation">📖</a></td>
-      <td align="center" valign="top" width="14.28%"><a href="http://bradleycherrin.com"><img src="https://avatars0.githubusercontent.com/u/5648785?v=4?s=100" width="100px;" alt="Bradley C. Herrin"/><br /><sub><b>Bradley C. Herrin</b></sub></a><br /><a href="https://github.com/saadpasta/developerFolio/commits?author=bradleycherrin" title="Documentation">📖</a> <a href="#ideas-bradleycherrin" title="Ideas, Planning, & Feedback">🤔</a></td>
-      <td align="center" valign="top" width="14.28%"><a href="http://www.zekinahlecaros.com"><img src="https://avatars0.githubusercontent.com/u/43392346?v=4?s=100" width="100px;" alt="Zekinah Lecaros"/><br /><sub><b>Zekinah Lecaros</b></sub></a><br /><a href="https://github.com/saadpasta/developerFolio/commits?author=zekinah" title="Code">💻</a></td>
-      <td align="center" valign="top" width="14.28%"><a href="https://github.com/vandana1499"><img src="https://avatars2.githubusercontent.com/u/29394600?v=4?s=100" width="100px;" alt="unbeat"/><br /><sub><b>unbeat</b></sub></a><br /><a href="https://github.com/saadpasta/developerFolio/commits?author=vandana1499" title="Documentation">📖</a></td>
-      <td align="center" valign="top" width="14.28%"><a href="https://github.com/lARSHADl"><img src="https://avatars3.githubusercontent.com/u/45604332?v=4?s=100" width="100px;" alt="Arshad Ahmed"/><br /><sub><b>Arshad Ahmed</b></sub></a><br /><a href="https://github.com/saadpasta/developerFolio/commits?author=lARSHADl" title="Documentation">📖</a></td>
-      <td align="center" valign="top" width="14.28%"><a href="http://xiaohuiliu.me"><img src="https://avatars1.githubusercontent.com/u/33507446?v=4?s=100" width="100px;" alt="Xiaohui Liu"/><br /><sub><b>Xiaohui Liu</b></sub></a><br /><a href="https://github.com/saadpasta/developerFolio/commits?author=Ergouzii" title="Documentation">📖</a> <a href="https://github.com/saadpasta/developerFolio/commits?author=Ergouzii" title="Code">💻</a> <a href="#design-Ergouzii" title="Design">🎨</a></td>
-    </tr>
-    <tr>
-      <td align="center" valign="top" width="14.28%"><a href="https://seungyeon-lee.github.io/"><img src="https://avatars1.githubusercontent.com/u/26589915?v=4?s=100" width="100px;" alt="Seungyeon-Lee"/><br /><sub><b>Seungyeon-Lee</b></sub></a><br /><a href="https://github.com/saadpasta/developerFolio/commits?author=Seungyeon-Lee" title="Code">💻</a></td>
-      <td align="center" valign="top" width="14.28%"><a href="https://github.com/NajamShehzad"><img src="https://avatars2.githubusercontent.com/u/37629243?v=4?s=100" width="100px;" alt="Najam Shehzad "/><br /><sub><b>Najam Shehzad </b></sub></a><br /><a href="https://github.com/saadpasta/developerFolio/commits?author=NajamShehzad" title="Code">💻</a></td>
-      <td align="center" valign="top" width="14.28%"><a href="https://www.exspiravit.ga/"><img src="https://avatars1.githubusercontent.com/u/22334680?v=4?s=100" width="100px;" alt="Randy Jesus Real Srsen"/><br /><sub><b>Randy Jesus Real Srsen</b></sub></a><br /><a href="https://github.com/saadpasta/developerFolio/commits?author=Exspiravit" title="Code">💻</a></td>
-      <td align="center" valign="top" width="14.28%"><a href="https://tamojitdas.netlify.app"><img src="https://avatars0.githubusercontent.com/u/40804626?v=4?s=100" width="100px;" alt="Tamojit Das"/><br /><sub><b>Tamojit Das</b></sub></a><br /><a href="https://github.com/saadpasta/developerFolio/commits?author=tamojit-123" title="Documentation">📖</a></td>
-      <td align="center" valign="top" width="14.28%"><a href="https://warengonzaga.com"><img src="https://avatars1.githubusercontent.com/u/15052701?v=4?s=100" width="100px;" alt="Waren Gonzaga"/><br /><sub><b>Waren Gonzaga</b></sub></a><br /><a href="https://github.com/saadpasta/developerFolio/commits?author=WarenGonzaga" title="Code">💻</a></td>
-      <td align="center" valign="top" width="14.28%"><a href="https://www.benjaminbourgeois.com"><img src="https://avatars3.githubusercontent.com/u/20949060?v=4?s=100" width="100px;" alt="Benjamin Bourgeois"/><br /><sub><b>Benjamin Bourgeois</b></sub></a><br /><a href="https://github.com/saadpasta/developerFolio/commits?author=BourgeoisBenjamin" title="Code">💻</a></td>
-      <td align="center" valign="top" width="14.28%"><a href="https://www.linkedin.com/in/keshavjain235"><img src="https://avatars2.githubusercontent.com/u/52530690?v=4?s=100" width="100px;" alt="Keshav Jain"/><br /><sub><b>Keshav Jain</b></sub></a><br /><a href="https://github.com/saadpasta/developerFolio/commits?author=keshavjain235" title="Code">💻</a></td>
-    </tr>
-    <tr>
-      <td align="center" valign="top" width="14.28%"><a href="https://hanzla.ga"><img src="https://avatars.githubusercontent.com/u/59178380?v=4?s=100" width="100px;" alt="Hanzla"/><br /><sub><b>Hanzla</b></sub></a><br /><a href="https://github.com/saadpasta/developerFolio/commits?author=1hanzla100" title="Code">💻</a></td>
-      <td align="center" valign="top" width="14.28%"><a href="https://github.com/yogeshhrathod"><img src="https://avatars.githubusercontent.com/u/46518134?v=4?s=100" width="100px;" alt="Yogesh Rathod"/><br /><sub><b>Yogesh Rathod</b></sub></a><br /><a href="https://github.com/saadpasta/developerFolio/commits?author=yogeshhrathod" title="Documentation">📖</a></td>
-      <td align="center" valign="top" width="14.28%"><a href="https://github.com/AlKun25"><img src="https://avatars.githubusercontent.com/u/53429438?v=4?s=100" width="100px;" alt="Kunal Mundada"/><br /><sub><b>Kunal Mundada</b></sub></a><br /><a href="https://github.com/saadpasta/developerFolio/commits?author=AlKun25" title="Documentation">📖</a></td>
-      <td align="center" valign="top" width="14.28%"><a href="https://github.com/jayhawk24"><img src="https://avatars.githubusercontent.com/u/38766415?v=4?s=100" width="100px;" alt="Anubhav Gupta"/><br /><sub><b>Anubhav Gupta</b></sub></a><br /><a href="https://github.com/saadpasta/developerFolio/commits?author=jayhawk24" title="Code">💻</a></td>
-      <td align="center" valign="top" width="14.28%"><a href="https://vatsaldavevdwpblog.wordpress.com/"><img src="https://avatars.githubusercontent.com/u/42956495?v=4?s=100" width="100px;" alt="Vatsal Dave"/><br /><sub><b>Vatsal Dave</b></sub></a><br /><a href="https://github.com/saadpasta/developerFolio/commits?author=vatsaldaveVD" title="Code">💻</a></td>
-      <td align="center" valign="top" width="14.28%"><a href="http://www.elvisciuffetelli.com"><img src="https://avatars.githubusercontent.com/u/35818757?v=4?s=100" width="100px;" alt="Elvis Ciuffetelli"/><br /><sub><b>Elvis Ciuffetelli</b></sub></a><br /><a href="https://github.com/saadpasta/developerFolio/commits?author=elvisciuffetelli" title="Code">💻</a></td>
-      <td align="center" valign="top" width="14.28%"><a href="http://ScottJellen.com"><img src="https://avatars.githubusercontent.com/u/51421669?v=4?s=100" width="100px;" alt="Scott Jellen"/><br /><sub><b>Scott Jellen</b></sub></a><br /><a href="https://github.com/saadpasta/developerFolio/commits?author=SJellen" title="Code">💻</a> <a href="#design-SJellen" title="Design">🎨</a></td>
-    </tr>
-    <tr>
-      <td align="center" valign="top" width="14.28%"><a href="https://www.linkedin.com/in/karthik-mohan-/"><img src="https://avatars.githubusercontent.com/u/25052382?v=4?s=100" width="100px;" alt="Karthik Mohan"/><br /><sub><b>Karthik Mohan</b></sub></a><br /><a href="https://github.com/saadpasta/developerFolio/issues?q=author%3Akarthikmohan" title="Bug reports">🐛</a></td>
-      <td align="center" valign="top" width="14.28%"><a href="https://github.com/mhowell11"><img src="https://avatars.githubusercontent.com/u/62813469?v=4?s=100" width="100px;" alt="mhowell11"/><br /><sub><b>mhowell11</b></sub></a><br /><a href="https://github.com/saadpasta/developerFolio/commits?author=mhowell11" title="Documentation">📖</a></td>
-      <td align="center" valign="top" width="14.28%"><a href="https://github.com/gajanandh"><img src="https://avatars.githubusercontent.com/u/80502737?v=4?s=100" width="100px;" alt="gajanandh"/><br /><sub><b>gajanandh</b></sub></a><br /><a href="https://github.com/saadpasta/developerFolio/issues?q=author%3Agajanandh" title="Bug reports">🐛</a></td>
-      <td align="center" valign="top" width="14.28%"><a href="https://github.com/JooHyukKim"><img src="https://avatars.githubusercontent.com/u/61615301?v=4?s=100" width="100px;" alt="JooHyukKim"/><br /><sub><b>JooHyukKim</b></sub></a><br /><a href="https://github.com/saadpasta/developerFolio/commits?author=JooHyukKim" title="Code">💻</a></td>
-      <td align="center" valign="top" width="14.28%"><a href="https://redheadphone.github.io/"><img src="https://avatars.githubusercontent.com/u/55500003?v=4?s=100" width="100px;" alt="Red Headphone"/><br /><sub><b>Red Headphone</b></sub></a><br /><a href="https://github.com/saadpasta/developerFolio/commits?author=RedHeadphone" title="Code">💻</a> <a href="https://github.com/saadpasta/developerFolio/issues?q=author%3ARedHeadphone" title="Bug reports">🐛</a></td>
-      <td align="center" valign="top" width="14.28%"><a href="https://sunitroy2703.github.io"><img src="https://avatars.githubusercontent.com/u/67560900?v=4?s=100" width="100px;" alt="Sunit Roy"/><br /><sub><b>Sunit Roy</b></sub></a><br /><a href="https://github.com/saadpasta/developerFolio/issues?q=author%3ASunitRoy2703" title="Bug reports">🐛</a></td>
-      <td align="center" valign="top" width="14.28%"><a href="https://github.com/nayabatir1"><img src="https://avatars.githubusercontent.com/u/91016903?v=4?s=100" width="100px;" alt="Atir Nayab"/><br /><sub><b>Atir Nayab</b></sub></a><br /><a href="https://github.com/saadpasta/developerFolio/issues?q=author%3Anayabatir1" title="Bug reports">🐛</a></td>
-    </tr>
-    <tr>
-      <td align="center" valign="top" width="14.28%"><a href="http://thatdevsherry.pk"><img src="https://avatars.githubusercontent.com/u/40890226?v=4?s=100" width="100px;" alt="Shehriyar Qureshi"/><br /><sub><b>Shehriyar Qureshi</b></sub></a><br /><a href="https://github.com/saadpasta/developerFolio/commits?author=thatdevsherry" title="Code">💻</a></td>
-      <td align="center" valign="top" width="14.28%"><a href="https://github.com/Rispectech"><img src="https://avatars.githubusercontent.com/u/90450963?v=4?s=100" width="100px;" alt="respectech"/><br /><sub><b>respectech</b></sub></a><br /><a href="https://github.com/saadpasta/developerFolio/commits?author=Rispectech" title="Code">💻</a></td>
-      <td align="center" valign="top" width="14.28%"><a href="http://braydentw.com"><img src="https://avatars.githubusercontent.com/u/47185402?v=4?s=100" width="100px;" alt="Brayden"/><br /><sub><b>Brayden</b></sub></a><br /><a href="https://github.com/saadpasta/developerFolio/issues?q=author%3ABraydenTW" title="Bug reports">🐛</a></td>
-      <td align="center" valign="top" width="14.28%"><a href="https://github.com/CanciuCostin"><img src="https://avatars.githubusercontent.com/u/27332434?v=4?s=100" width="100px;" alt="Canciu Costin"/><br /><sub><b>Canciu Costin</b></sub></a><br /><a href="https://github.com/saadpasta/developerFolio/commits?author=CanciuCostin" title="Code">💻</a></td>
-      <td align="center" valign="top" width="14.28%"><a href="https://github.com/SpectralGT"><img src="https://avatars.githubusercontent.com/u/78777556?v=4?s=100" width="100px;" alt="Atharv Singh"/><br /><sub><b>Atharv Singh</b></sub></a><br /><a href="https://github.com/saadpasta/developerFolio/commits?author=SpectralGT" title="Code">💻</a></td>
-      <td align="center" valign="top" width="14.28%"><a href="https://allishaan.co"><img src="https://avatars.githubusercontent.com/u/59707330?v=4?s=100" width="100px;" alt="Ishan Khandelwal"/><br /><sub><b>Ishan Khandelwal</b></sub></a><br /><a href="https://github.com/saadpasta/developerFolio/commits?author=Ishan-001" title="Documentation">📖</a></td>
-      <td align="center" valign="top" width="14.28%"><a href="https://slyapustin.com"><img src="https://avatars.githubusercontent.com/u/370774?v=4?s=100" width="100px;" alt="Sergey Lyapustin"/><br /><sub><b>Sergey Lyapustin</b></sub></a><br /><a href="https://github.com/saadpasta/developerFolio/commits?author=slyapustin" title="Code">💻</a></td>
-    </tr>
-    <tr>
-      <td align="center" valign="top" width="14.28%"><a href="https://www.cam1pozas.xyz/"><img src="https://avatars.githubusercontent.com/u/89259499?v=4?s=100" width="100px;" alt="Camila Pozas"/><br /><sub><b>Camila Pozas</b></sub></a><br /><a href="https://github.com/saadpasta/developerFolio/commits?author=camipozas" title="Code">💻</a></td>
-      <td align="center" valign="top" width="14.28%"><a href="https://saiteja13427.github.io"><img src="https://avatars.githubusercontent.com/u/40917760?v=4?s=100" width="100px;" alt="Sai Teja"/><br /><sub><b>Sai Teja</b></sub></a><br /><a href="https://github.com/saadpasta/developerFolio/issues?q=author%3Asaiteja13427" title="Bug reports">🐛</a></td>
-      <td align="center" valign="top" width="14.28%"><a href="https://github.com/Vinitvh"><img src="https://avatars.githubusercontent.com/u/42197888?v=4?s=100" width="100px;" alt="Vinit Hemadri "/><br /><sub><b>Vinit Hemadri </b></sub></a><br /><a href="https://github.com/saadpasta/developerFolio/commits?author=Vinitvh" title="Code">💻</a></td>
-      <td align="center" valign="top" width="14.28%"><a href="https://github.com/Njong392"><img src="https://avatars.githubusercontent.com/u/81039882?v=4?s=100" width="100px;" alt="Njong Emy"/><br /><sub><b>Njong Emy</b></sub></a><br /><a href="https://github.com/saadpasta/developerFolio/commits?author=Njong392" title="Documentation">📖</a></td>
-      <td align="center" valign="top" width="14.28%"><a href="https://tamal.vercel.app/"><img src="https://avatars.githubusercontent.com/u/72851613?v=4?s=100" width="100px;" alt="Tamal Das "/><br /><sub><b>Tamal Das </b></sub></a><br /><a href="https://github.com/saadpasta/developerFolio/commits?author=IAmTamal" title="Documentation">📖</a></td>
-      <td align="center" valign="top" width="14.28%"><a href="http://dunsin.vercel.app"><img src="https://avatars.githubusercontent.com/u/78784850?v=4?s=100" width="100px;" alt="Dunsin"/><br /><sub><b>Dunsin</b></sub></a><br /><a href="https://github.com/saadpasta/developerFolio/commits?author=Dun-sin" title="Code">💻</a></td>
-      <td align="center" valign="top" width="14.28%"><a href="https://github.com/muneebahmedayub"><img src="https://avatars.githubusercontent.com/u/65030135?v=4?s=100" width="100px;" alt="Muneeb Ahmed"/><br /><sub><b>Muneeb Ahmed</b></sub></a><br /><a href="https://github.com/saadpasta/developerFolio/commits?author=muneebahmedayub" title="Code">💻</a></td>
-    </tr>
-    <tr>
-      <td align="center" valign="top" width="14.28%"><a href="https://www.linkedin.com/in/qais-attarwala/"><img src="https://avatars.githubusercontent.com/u/52388168?v=4?s=100" width="100px;" alt="Qais Attarwala"/><br /><sub><b>Qais Attarwala</b></sub></a><br /><a href="https://github.com/saadpasta/developerFolio/commits?author=KazAttarwala" title="Code">💻</a></td>
-    </tr>
-  </tbody>
-</table>
-
-<!-- markdownlint-restore -->
-<!-- prettier-ignore-end -->
-
-<!-- ALL-CONTRIBUTORS-LIST:END -->
-
----
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Meghana Pentyala — Generative AI Engineer</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#080B14;
+    --surface:rgba(20,28,48,0.55);
+    --surface-solid:#121A2C;
+    --border:#243357;
+    --border-soft:#1A2440;
+    --text:#EDF1F8;
+    --text-dim:#95A2BD;
+    --text-faint:#5C6885;
+
+    /* domain-coded accent system */
+    --c-orchestration:#5B8DEF;   /* supervisor / agents / blue */
+    --c-retrieval:#37E6C5;       /* RAG / retrieval / cyan */
+    --c-ml:#B98CFF;              /* ML / data / purple */
+    --c-cloud:#FFB454;           /* MLOps / cloud / amber */
+    --c-clinical:#FF6FA5;        /* healthcare / clinical / pink */
+
+    --radius:12px;
+    --maxw:1160px;
+  }
+  *{box-sizing:border-box; margin:0; padding:0;}
+  html{scroll-behavior:smooth;}
+  body{
+    background:var(--bg);
+    color:var(--text);
+    font-family:'Inter', sans-serif;
+    line-height:1.6;
+    -webkit-font-smoothing:antialiased;
+    overflow-x:hidden;
+  }
+  h1,h2,h3,.display{ font-family:'Space Grotesk', sans-serif; letter-spacing:-0.01em; }
+  .mono{ font-family:'JetBrains Mono', monospace; }
+  a{ color:inherit; text-decoration:none; }
+  .wrap{ max-width:var(--maxw); margin:0 auto; padding:0 32px; position:relative; z-index:1; }
+  section{ position:relative; z-index:1; }
+  ::selection{ background:rgba(55,230,197,0.22); color:#fff; }
+
+  /* ---------- Ambient backdrop: circuit grid + color blooms ---------- */
+  .bg-fixed{ position:fixed; inset:0; z-index:0; pointer-events:none; }
+  .bg-grid{
+    position:absolute; inset:0;
+    background-image:
+      linear-gradient(rgba(255,255,255,0.028) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(255,255,255,0.028) 1px, transparent 1px);
+    background-size:42px 42px;
+    mask-image:radial-gradient(ellipse 80% 60% at 50% 0%, black 40%, transparent 100%);
+  }
+  .bg-bloom{ position:absolute; border-radius:50%; filter:blur(110px); opacity:0.16; }
+  .bloom-1{ width:520px; height:520px; top:-140px; left:-80px; background:var(--c-orchestration); }
+  .bloom-2{ width:480px; height:480px; top:120px; right:-160px; background:var(--c-retrieval); }
+  .bloom-3{ width:420px; height:420px; top:900px; left:20%; background:var(--c-ml); opacity:0.1; }
+  .bloom-4{ width:460px; height:460px; top:1700px; right:5%; background:var(--c-clinical); opacity:0.09; }
+
+  /* ---------- NAV ---------- */
+  nav{
+    position:fixed; top:0; left:0; right:0; z-index:50;
+    background:rgba(8,11,20,0.72);
+    backdrop-filter:blur(14px) saturate(140%);
+    border-bottom:1px solid var(--border-soft);
+  }
+  nav .wrap{ display:flex; align-items:center; justify-content:space-between; height:64px; }
+  .brand{ font-family:'Space Grotesk'; font-weight:600; font-size:15px; display:flex; align-items:center; gap:9px; }
+  .brand .hl{
+    background:linear-gradient(100deg, var(--c-retrieval), var(--c-orchestration));
+    -webkit-background-clip:text; background-clip:text; color:transparent;
+  }
+  .brand .dot{
+    width:8px; height:8px; border-radius:50%;
+    background:conic-gradient(from 0deg, var(--c-orchestration), var(--c-retrieval), var(--c-ml), var(--c-clinical), var(--c-orchestration));
+    animation:spin 3s linear infinite;
+  }
+  @keyframes spin{ to{ transform:rotate(360deg); } }
+  .navlinks{ display:flex; gap:32px; font-size:13px; color:var(--text-dim); }
+  .navlinks a{ position:relative; transition:color .2s; padding:4px 0; }
+  .navlinks a::after{
+    content:""; position:absolute; left:0; bottom:0; width:0; height:1.5px;
+    background:linear-gradient(90deg, var(--c-retrieval), var(--c-orchestration));
+    transition:width .25s;
+  }
+  .navlinks a:hover{ color:var(--text); }
+  .navlinks a:hover::after{ width:100%; }
+  .nav-cta{
+    font-size:12.5px; padding:9px 18px; border-radius:7px; font-family:'JetBrains Mono';
+    background:linear-gradient(135deg, var(--c-retrieval), var(--c-orchestration));
+    color:#06131F; font-weight:600; transition:filter .2s, transform .2s;
+  }
+  .nav-cta:hover{ filter:brightness(1.12); transform:translateY(-1px); }
+
+  /* ---------- HERO ---------- */
+  .hero{ padding:152px 0 90px; }
+  .hero-grid{ display:grid; grid-template-columns:1.05fr 0.95fr; gap:56px; align-items:center; }
+  .eyebrow{
+    display:inline-flex; align-items:center; gap:8px;
+    font-family:'JetBrains Mono'; font-size:12px; color:var(--c-retrieval);
+    background:rgba(55,230,197,0.08); border:1px solid rgba(55,230,197,0.28);
+    padding:6px 13px; border-radius:20px; margin-bottom:22px;
+  }
+  .eyebrow .pulse-dot{
+    width:6px; height:6px; border-radius:50%; background:var(--c-retrieval);
+    box-shadow:0 0 8px var(--c-retrieval); animation:pulseglow 2s ease-in-out infinite;
+  }
+  .name-block{ margin-bottom:26px; user-select:none; }
+  .tagline-row{
+    display:flex; align-items:center; gap:12px; margin-bottom:20px;
+    font-family:'JetBrains Mono'; font-size:12.5px; color:var(--text-dim); letter-spacing:0.06em;
+  }
+  .tagline-row .rule-short{ width:34px; height:1px; background:var(--c-retrieval); display:inline-block; }
+  .name-chiprow{ display:flex; flex-wrap:wrap; gap:9px; margin:22px 0 30px; }
+  .name-chip{
+    font-family:'JetBrains Mono'; font-size:12px; padding:7px 14px; border-radius:6px;
+    border:1px solid var(--chipc, var(--c-retrieval)); color:var(--chipc, var(--c-retrieval));
+    background:color-mix(in srgb, var(--chipc, var(--c-retrieval)) 12%, transparent);
+  }
+  .name-block .n1, .name-block .n2{
+    font-family:'Space Grotesk'; font-weight:700; line-height:0.94;
+    font-size:clamp(52px, 7vw, 92px); display:block; letter-spacing:-0.01em;
+  }
+  .name-block .n1{ color:var(--text); }
+  .name-block .n2{
+    color:transparent; -webkit-text-stroke:1.5px var(--c-retrieval);
+    text-shadow:0 0 24px rgba(55,230,197,0.15);
+  }
+  .hero h1{ font-size:30px; font-weight:600; line-height:1.25; margin-bottom:18px; color:var(--text-dim); }
+  .hero h1 b{ color:var(--text); font-weight:600; }
+  .grad-text{
+    background:linear-gradient(100deg, var(--c-retrieval) 10%, var(--c-orchestration) 45%, var(--c-ml) 75%, var(--c-clinical) 100%);
+    -webkit-background-clip:text; background-clip:text; color:transparent;
+    background-size:200% auto; animation:shimmer 7s linear infinite;
+  }
+  @keyframes shimmer{ to{ background-position:200% center; } }
+  .hero p.lede{ font-size:16.5px; color:var(--text-dim); max-width:530px; margin-bottom:32px; }
+  .hero-cta{ display:flex; gap:12px; flex-wrap:wrap; margin-bottom:40px;}
+  .btn{
+    font-family:'JetBrains Mono'; font-size:13px; padding:12px 20px; border-radius:8px;
+    display:inline-flex; align-items:center; gap:8px; transition:all .2s; border:1px solid transparent;
+  }
+  .btn-primary{
+    background:linear-gradient(135deg, var(--c-retrieval), var(--c-orchestration));
+    color:#06131F; font-weight:600; box-shadow:0 0 0 rgba(55,230,197,0);
+  }
+  .btn-primary:hover{ transform:translateY(-2px); box-shadow:0 10px 30px -10px rgba(55,230,197,0.5); }
+  .btn-ghost{ border-color:var(--border); color:var(--text); background:var(--surface); backdrop-filter:blur(8px); }
+  .btn-ghost:hover{ border-color:var(--c-ml); color:#fff; }
+  .hero-meta{ display:flex; gap:26px; font-size:13px; color:var(--text-faint); font-family:'JetBrains Mono'; flex-wrap:wrap; }
+  .hero-meta b{ color:var(--text); font-weight:500; }
+
+  /* Graph card with animated gradient border */
+  .graph-card-wrap{ position:relative; border-radius:16px; padding:1.5px;
+    background:conic-gradient(from var(--ang,0deg), var(--c-orchestration), var(--c-retrieval), var(--c-ml), var(--c-clinical), var(--c-cloud), var(--c-orchestration));
+    animation:rotate-border 6s linear infinite;
+  }
+  @keyframes rotate-border{ to{ --ang:360deg; } }
+  @property --ang{ syntax:'<angle>'; inherits:false; initial-value:0deg; }
+  .graph-card{
+    background:rgba(11,16,29,0.92); border-radius:15px;
+    padding:22px; position:relative; overflow:hidden; backdrop-filter:blur(10px);
+  }
+  .graph-title{ font-family:'JetBrains Mono'; font-size:11px; color:var(--text-faint); display:flex; justify-content:space-between; margin-bottom:14px; }
+  .graph-title .live{ color:var(--c-retrieval); display:flex; align-items:center; gap:6px; }
+  .graph-title .live::before{ content:""; width:6px; height:6px; border-radius:50%; background:var(--c-retrieval); box-shadow:0 0 6px var(--c-retrieval); animation:pulseglow 1.6s ease-in-out infinite; }
+  svg.agentgraph{ width:100%; height:auto; display:block; }
+  .node-label{ font-family:'JetBrains Mono'; font-size:9.5px; fill:var(--text-dim); }
+  .edge{ stroke:var(--border); stroke-width:1.4; fill:none; }
+  @keyframes pulseglow{ 0%,100%{ opacity:.4; } 50%{ opacity:1; } }
+  .legend{ display:flex; gap:14px; flex-wrap:wrap; margin-top:14px; font-family:'JetBrains Mono'; font-size:10px; color:var(--text-faint); }
+  .legend span{ display:inline-flex; align-items:center; gap:5px; }
+  .legend i{ width:7px; height:7px; border-radius:50%; display:inline-block; }
+
+  /* ---------- STATS ---------- */
+  .stats{ border-top:1px solid var(--border-soft); border-bottom:1px solid var(--border-soft); padding:36px 0; position:relative; }
+  .stats .wrap{ display:grid; grid-template-columns:repeat(4,1fr); gap:24px; }
+  .stat{ position:relative; padding-left:16px; border-left:2px solid; }
+  .stat:nth-child(1){ border-color:var(--c-retrieval); }
+  .stat:nth-child(2){ border-color:var(--c-orchestration); }
+  .stat:nth-child(3){ border-color:var(--c-ml); }
+  .stat:nth-child(4){ border-color:var(--c-clinical); }
+  .stat b{ font-family:'Space Grotesk'; font-size:27px; display:block; }
+  .stat:nth-child(1) b{ color:var(--c-retrieval); }
+  .stat:nth-child(2) b{ color:var(--c-orchestration); }
+  .stat:nth-child(3) b{ color:var(--c-ml); }
+  .stat:nth-child(4) b{ color:var(--c-clinical); }
+  .stat span{ font-size:12px; color:var(--text-faint); font-family:'JetBrains Mono'; }
+
+  /* ---------- SECTION HEADERS ---------- */
+  .sec{ padding:96px 0; }
+  .reveal{ opacity:0; transform:translateY(24px); transition:opacity .7s ease, transform .7s ease; }
+  .reveal.in{ opacity:1; transform:translateY(0); }
+  .sec-head{ display:flex; align-items:baseline; gap:14px; margin-bottom:46px; }
+  .sec-head .idx{
+    font-family:'JetBrains Mono'; font-size:12px; color:var(--bg); font-weight:600;
+    background:linear-gradient(135deg, var(--c-retrieval), var(--c-orchestration));
+    width:26px; height:26px; border-radius:50%; display:flex; align-items:center; justify-content:center;
+  }
+  .sec-head h2{ font-size:27px; font-weight:600; }
+  .sec-head .rule{ flex:1; height:1px; background:linear-gradient(90deg, var(--border-soft), transparent); }
+
+  /* ---------- EXPERIENCE ---------- */
+  .timeline{ position:relative; border-left:1px solid var(--border-soft); padding-left:38px; }
+  .role{ position:relative; margin-bottom:58px; }
+  .role:last-child{ margin-bottom:0; }
+  .role::before{
+    content:""; position:absolute; left:-43px; top:4px; width:11px; height:11px; border-radius:50%;
+    background:var(--bg); border:2px solid var(--dotcolor, var(--c-retrieval));
+    box-shadow:0 0 10px var(--dotcolor, var(--c-retrieval));
+  }
+  .role:nth-child(1){ --dotcolor: var(--c-orchestration); }
+  .role:nth-child(2){ --dotcolor: var(--c-retrieval); }
+  .role:nth-child(3){ --dotcolor: var(--c-ml); }
+  .role:nth-child(4){ --dotcolor: var(--c-clinical); }
+  .role-top{ display:flex; justify-content:space-between; flex-wrap:wrap; gap:6px; margin-bottom:6px; }
+  .role-title{ font-family:'Space Grotesk'; font-size:18.5px; font-weight:600; }
+  .role-title .co{ color:var(--dotcolor, var(--c-retrieval)); }
+  .role-date{ font-family:'JetBrains Mono'; font-size:12px; color:var(--text-faint); }
+  .role-sub{ font-size:13px; color:var(--text-dim); margin-bottom:16px; }
+  .role ul{ list-style:none; display:flex; flex-direction:column; gap:9px; margin-bottom:16px; }
+  .role li{ position:relative; padding-left:19px; font-size:14.5px; color:var(--text-dim); }
+  .role li::before{ content:"→"; position:absolute; left:0; color:var(--dotcolor, var(--c-retrieval)); font-size:12px; top:2px; }
+  .stackrow{ display:flex; flex-wrap:wrap; gap:7px; }
+  .chip{
+    font-family:'JetBrains Mono'; font-size:11px; color:var(--text-dim);
+    border:1px solid var(--border); padding:4px 10px; border-radius:6px;
+    background:rgba(255,255,255,0.02); transition:border-color .2s, color .2s;
+  }
+  .role:hover .chip{ }
+  .chip:hover{ border-color:var(--dotcolor, var(--c-retrieval)); color:var(--text); }
+
+  /* ---------- SKILLS ---------- */
+  .skills-grid{ display:grid; grid-template-columns:repeat(3,1fr); gap:20px; }
+  .skillcard{
+    background:var(--surface); border:1px solid var(--border-soft); border-radius:12px; padding:22px;
+    backdrop-filter:blur(10px); position:relative; transition:transform .25s, box-shadow .25s, border-color .25s;
+    border-top:2px solid var(--sc, var(--c-retrieval));
+  }
+  .skillcard:hover{ transform:translateY(-4px); box-shadow:0 16px 40px -20px var(--sc, var(--c-retrieval)); border-color:var(--sc, var(--c-retrieval)); }
+  .skillcard:nth-child(1){ --sc:var(--c-retrieval); }
+  .skillcard:nth-child(2){ --sc:var(--c-cloud); }
+  .skillcard:nth-child(3){ --sc:var(--c-orchestration); }
+  .skillcard:nth-child(4){ --sc:var(--c-cloud); }
+  .skillcard:nth-child(5){ --sc:var(--c-ml); }
+  .skillcard:nth-child(6){ --sc:var(--c-clinical); }
+  .skillcard h3{ font-size:14px; color:var(--sc); margin-bottom:14px; font-family:'JetBrains Mono'; font-weight:500; display:flex; align-items:center; gap:8px; }
+  .skillcard h3::before{ content:""; width:7px; height:7px; border-radius:2px; background:var(--sc); display:inline-block; }
+  .skillcard .chip{ margin:0 6px 6px 0; display:inline-block; }
+  .skillcard .chip:hover{ border-color:var(--sc); }
+
+  /* ---------- EDUCATION / CERTS ---------- */
+  .split{ display:grid; grid-template-columns:1fr 1fr; gap:60px; }
+  .cert-item{ display:flex; justify-content:space-between; align-items:center; padding:16px 0; border-bottom:1px solid var(--border-soft); font-size:14px; }
+  .cert-item:first-child{ padding-top:0; }
+  .cert-item .name{ color:var(--text); display:flex; align-items:center; gap:10px; }
+  .cert-item .name::before{ content:""; width:6px; height:6px; border-radius:50%; background:var(--c-cloud); }
+  .cert-item:nth-child(2) .name::before{ background:var(--c-orchestration); }
+  .cert-item:nth-child(3) .name::before{ background:var(--c-ml); }
+  .cert-item:nth-child(4) .name::before{ background:var(--c-retrieval); }
+  .cert-item .org{ color:var(--text-faint); font-family:'JetBrains Mono'; font-size:12px; }
+  .edu-card{
+    background:var(--surface); border:1px solid var(--border-soft); border-radius:12px; padding:28px;
+    backdrop-filter:blur(10px); position:relative; overflow:hidden;
+  }
+  .edu-card::before{
+    content:""; position:absolute; top:-40%; right:-20%; width:220px; height:220px; border-radius:50%;
+    background:radial-gradient(circle, rgba(185,140,255,0.18), transparent 70%); filter:blur(10px);
+  }
+  .edu-card h3{ font-size:16px; margin-bottom:4px; }
+  .edu-card .meta{ font-family:'JetBrains Mono'; font-size:12px; color:var(--text-faint); margin-bottom:14px; }
+  .edu-card p{ font-size:13.5px; color:var(--text-dim); position:relative; }
+
+  /* ---------- CONTACT ---------- */
+  .contact{ text-align:center; padding:120px 0 96px; position:relative; }
+  .contact h2{ font-size:36px; margin-bottom:14px; }
+  .contact p{ color:var(--text-dim); margin-bottom:34px; }
+  footer{ border-top:1px solid var(--border-soft); padding:26px 0; }
+  footer .wrap{ display:flex; justify-content:space-between; align-items:center; font-size:12px; color:var(--text-faint); font-family:'JetBrains Mono'; }
+  footer a:hover{ color:var(--c-retrieval); }
+
+  @media (max-width:880px){
+    .hero-grid{ grid-template-columns:1fr; }
+    .stats .wrap{ grid-template-columns:repeat(2,1fr); row-gap:22px; }
+    .skills-grid{ grid-template-columns:1fr; }
+    .split{ grid-template-columns:1fr; }
+    .hero h1{ font-size:32px; }
+    .navlinks{ display:none; }
+  }
+</style>
+</head>
+<body>
+
+<div class="bg-fixed">
+  <div class="bg-grid"></div>
+  <div class="bg-bloom bloom-1"></div>
+  <div class="bg-bloom bloom-2"></div>
+  <div class="bg-bloom bloom-3"></div>
+  <div class="bg-bloom bloom-4"></div>
+</div>
+
+<nav>
+  <div class="wrap">
+    <div class="brand"><span class="dot"></span><span class="hl">MEGHANA</span>&nbsp;PENTYALA</div>
+    <div class="navlinks">
+      <a href="#experience">Experience</a>
+      <a href="#skills">Skills</a>
+      <a href="#education">Education</a>
+      <a href="#contact">Contact</a>
+    </div>
+    <a class="nav-cta" href="mailto:meghanapentyala.work@gmail.com">Get in touch</a>
+  </div>
+</nav>
+
+<header class="hero">
+  <div class="wrap hero-grid">
+    <div>
+      <div class="eyebrow"><span class="pulse-dot"></span>Available for new roles</div>
+      <div class="tagline-row"><span class="rule-short"></span>GENERATIVE AI ENGINEER &nbsp;·&nbsp; AGENTIC AI &nbsp;·&nbsp; HEALTHCARE</div>
+      <div class="name-block">
+        <span class="n1">MEGHANA</span>
+        <span class="n2">PENTYALA</span>
+      </div>
+      <div class="name-chiprow">
+        <span class="name-chip" style="--chipc:var(--c-orchestration)">LangGraph</span>
+        <span class="name-chip" style="--chipc:var(--c-retrieval)">RAG · Weaviate</span>
+        <span class="name-chip" style="--chipc:var(--c-ml)">Agentic AI</span>
+        <span class="name-chip" style="--chipc:var(--c-cloud)">Azure AI Foundry</span>
+      </div>
+      <h1>Building <b>agentic AI systems</b> for high-stakes clinical decisions.</h1>
+      <p class="lede">Generative AI Engineer with 4+ years across the ML/GenAI lifecycle — RAG pipelines, multi-agent orchestration, and clinical decision support built on real EHR (FHIR) data. Currently designing LangGraph systems at Capgemini.</p>
+      <div class="hero-cta">
+        <a class="btn btn-primary" href="mailto:meghanapentyala.work@gmail.com">✉ meghanapentyala.work@gmail.com</a>
+        <a class="btn btn-ghost" href="https://www.linkedin.com/in/meghana-pentyala-00a146198" target="_blank">LinkedIn ↗</a>
+      </div>
+      <div class="hero-meta">
+        <span><b>4+ yrs</b> experience</span>
+        <span><b>Open to relocate</b> · anywhere in USA</span>
+      </div>
+    </div>
+
+    <div class="graph-card-wrap">
+      <div class="graph-card">
+        <div class="graph-title"><span>agent_graph.py</span><span class="live">live routing</span></div>
+        <svg class="agentgraph" viewBox="0 0 420 300" xmlns="http://www.w3.org/2000/svg">
+          <path class="edge" d="M 210 50 L 90 130" />
+          <path class="edge" d="M 210 50 L 210 130" />
+          <path class="edge" d="M 210 50 L 330 130" />
+          <path class="edge" d="M 90 160 L 90 230" />
+          <path class="edge" d="M 210 160 L 210 230" />
+          <path class="edge" d="M 330 160 L 330 230" />
+
+          <circle r="3" fill="#5B8DEF"><animateMotion dur="2.6s" repeatCount="indefinite" path="M 210 50 L 90 130" /></circle>
+          <circle r="3" fill="#5B8DEF"><animateMotion dur="2.6s" begin="0.4s" repeatCount="indefinite" path="M 210 50 L 210 130" /></circle>
+          <circle r="3" fill="#5B8DEF"><animateMotion dur="2.6s" begin="0.8s" repeatCount="indefinite" path="M 210 50 L 330 130" /></circle>
+          <circle r="2.6" fill="#37E6C5"><animateMotion dur="2.2s" begin="1.3s" repeatCount="indefinite" path="M 90 160 L 90 230" /></circle>
+          <circle r="2.6" fill="#B98CFF"><animateMotion dur="2.2s" begin="1.5s" repeatCount="indefinite" path="M 210 160 L 210 230" /></circle>
+          <circle r="2.6" fill="#FF6FA5"><animateMotion dur="2.2s" begin="1.7s" repeatCount="indefinite" path="M 330 160 L 330 230" /></circle>
+
+          <g>
+            <circle cx="210" cy="50" r="27" fill="#111A2E" stroke="#5B8DEF" stroke-width="2">
+              <animate attributeName="opacity" values="0.6;1;0.6" dur="3s" repeatCount="indefinite" />
+            </circle>
+            <text x="210" y="46" text-anchor="middle" class="node-label" fill="#AFC2F5">SUPERVISOR</text>
+            <text x="210" y="58" text-anchor="middle" class="node-label" fill="#5D6B85">intent router</text>
+          </g>
+
+          <g>
+            <circle cx="90" cy="145" r="24" fill="#111A2E" stroke="#37E6C5" stroke-width="1.6">
+              <animate attributeName="opacity" values="0.5;1;0.5" dur="3s" begin="0.6s" repeatCount="indefinite" />
+            </circle>
+            <text x="90" y="141" text-anchor="middle" class="node-label" fill="#9FF2E1">RETRIEVAL</text>
+            <text x="90" y="153" text-anchor="middle" class="node-label" fill="#5D6B85">Weaviate RAG</text>
+          </g>
+          <g>
+            <circle cx="210" cy="145" r="24" fill="#111A2E" stroke="#B98CFF" stroke-width="1.6">
+              <animate attributeName="opacity" values="0.5;1;0.5" dur="3s" begin="1.2s" repeatCount="indefinite" />
+            </circle>
+            <text x="210" y="141" text-anchor="middle" class="node-label" fill="#D7C4FF">CLINICAL</text>
+            <text x="210" y="153" text-anchor="middle" class="node-label" fill="#5D6B85">reasoning</text>
+          </g>
+          <g>
+            <circle cx="330" cy="145" r="24" fill="#111A2E" stroke="#FF6FA5" stroke-width="1.6">
+              <animate attributeName="opacity" values="0.5;1;0.5" dur="3s" begin="1.8s" repeatCount="indefinite" />
+            </circle>
+            <text x="330" y="141" text-anchor="middle" class="node-label" fill="#FFB6D2">ESCALATE</text>
+            <text x="330" y="153" text-anchor="middle" class="node-label" fill="#5D6B85">low-confidence</text>
+          </g>
+
+          <circle cx="90" cy="250" r="18" fill="#111A2E" stroke="#243357" stroke-width="1.4" />
+          <text x="90" y="254" text-anchor="middle" class="node-label" font-size="8.5">FHIR ctx</text>
+          <circle cx="210" cy="250" r="18" fill="#111A2E" stroke="#243357" stroke-width="1.4" />
+          <text x="210" y="254" text-anchor="middle" class="node-label" font-size="8.5">response</text>
+          <circle cx="330" cy="250" r="18" fill="#111A2E" stroke="#243357" stroke-width="1.4" />
+          <text x="330" y="254" text-anchor="middle" class="node-label" font-size="8.5">HITL review</text>
+        </svg>
+        <div class="legend">
+          <span><i style="background:#5B8DEF"></i>Orchestration</span>
+          <span><i style="background:#37E6C5"></i>Retrieval</span>
+          <span><i style="background:#B98CFF"></i>Reasoning</span>
+          <span><i style="background:#FF6FA5"></i>Escalation</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</header>
+
+<section class="stats">
+  <div class="wrap">
+    <div class="stat"><b>92%</b><span>RAG groundedness score</span></div>
+    <div class="stat"><b>1,500+</b><span>queries served / day</span></div>
+    <div class="stat"><b>&lt;2.1s</b><span>avg response latency</span></div>
+    <div class="stat"><b>35%↓</b><span>unhelpful responses</span></div>
+  </div>
+</section>
+
+<section class="sec reveal" id="experience">
+  <div class="wrap">
+    <div class="sec-head"><span class="idx mono">01</span><h2>Experience</h2><div class="rule"></div></div>
+
+    <div class="timeline">
+
+      <div class="role">
+        <div class="role-top">
+          <div class="role-title">Generative AI Engineer <span class="co">— Capgemini</span></div>
+          <div class="role-date mono">Dec 2025 — Present</div>
+        </div>
+        <div class="role-sub">Multi-Agent Clinical Intelligence Assistant · USA (Remote)</div>
+        <ul>
+          <li>Designed a LangGraph agent graph with a supervisor node that classifies intent and routes to sub-agents, with fallback escalation, cutting unhelpful or incorrect responses reaching end users by ~35%.</li>
+          <li>Built the RAG layer on Weaviate, chunking domain knowledge into each agent's context per MCP schemas, reaching a 92% groundedness score in production evals.</li>
+          <li>Owned prompt design across all sub-agents — system prompts, few-shot examples, chain-of-thought templates — lifting output quality scores ~28%.</li>
+          <li>Shipped a FastAPI backend with async endpoints and a Streamlit UI serving 1,500+ queries/day at &lt;2.1s average latency.</li>
+          <li>Owned the stack end to end — ingestion, orchestration, API, front-end, deployment — with CI on every push, cutting deploy time from 45 to 8 minutes.</li>
+        </ul>
+        <div class="stackrow">
+          <span class="chip">LangGraph</span><span class="chip">LangChain</span><span class="chip">Azure AI Foundry</span><span class="chip">FastAPI</span><span class="chip">Streamlit</span><span class="chip">Weaviate</span><span class="chip">Python</span>
+        </div>
+      </div>
+
+      <div class="role">
+        <div class="role-top">
+          <div class="role-title">AI/ML Engineer, Generative AI <span class="co">— MCG Health</span></div>
+          <div class="role-date mono">Aug 2024 — Nov 2025</div>
+        </div>
+        <div class="role-sub">Enterprise Clinical Knowledge Assistant & RAG Platform · USA (Remote)</div>
+        <ul>
+          <li>Built LLM-powered tools for clinical editors to review, summarize, and update evidence-based care guidelines, cutting authoring time ~40%.</li>
+          <li>Developed retrieval pipelines over medical literature and internal guidelines, cutting evidence lookup from 25 minutes to under 4.</li>
+          <li>Designed RAG-based architectures using LangChain and vector databases to support guideline drafting and summarization workflows for 80+ clinical editors.</li>
+          <li>Engineered NLP pipelines processing 1.2M+ clinical documents, extracting standardized medical concepts at 89% accuracy.</li>
+          <li>Deployed APIs (FastAPI, Docker, AWS/Azure) at &lt;180ms average latency and 99.5% uptime, with hallucination rate held under 6%.</li>
+        </ul>
+        <div class="stackrow">
+          <span class="chip">LangChain</span><span class="chip">FAISS/Pinecone</span><span class="chip">FastAPI</span><span class="chip">Docker</span><span class="chip">MLflow</span><span class="chip">PySpark</span><span class="chip">GPT/LLaMA</span>
+        </div>
+      </div>
+
+      <div class="role">
+        <div class="role-top">
+          <div class="role-title">Graduate Research & Coursework <span class="co">— University of North Texas</span></div>
+          <div class="role-date mono">Aug 2022 — May 2024</div>
+        </div>
+        <div class="role-sub">MS, Computer & Information Sciences · Denton, TX</div>
+        <ul>
+          <li>Built an AI-powered doctor consultation platform — symptom-based triage, doctor recommendation, and LLM-based consultation summaries.</li>
+          <li>Built a credit card fraud detection system on large-scale transaction data using XGBoost and Random Forest, driven mainly by temporal and behavioral feature engineering.</li>
+          <li>Worked with a professor on a GenAI research project — a RAG pipeline in LangChain and LangGraph for document retrieval and QA.</li>
+          <li>Teaching Assistant for Big Data — led lab sessions on Hadoop, Spark, and distributed processing.</li>
+        </ul>
+        <div class="stackrow">
+          <span class="chip">LangChain</span><span class="chip">LangGraph</span><span class="chip">XGBoost</span><span class="chip">Random Forest</span><span class="chip">Spark</span><span class="chip">Hadoop</span>
+        </div>
+      </div>
+
+      <div class="role">
+        <div class="role-top">
+          <div class="role-title">AI Engineer <span class="co">— Accenture</span></div>
+          <div class="role-date mono">Feb 2021 — Jul 2022</div>
+        </div>
+        <div class="role-sub">AI Innovation for Mental Health (Client: NHS) & Digital Healthcare Experience (Client: League) · Hyderabad, India</div>
+        <ul>
+          <li>Integrated patient records into an NHS platform, reducing data inconsistencies by ~30%.</li>
+          <li>Engineered longitudinal and risk-based features that lifted model ROC-AUC by ~12–15% over baseline.</li>
+          <li>Built transformer-based NLP pipelines (BERT) extracting symptoms from unstructured clinical notes, increasing feature coverage ~40%.</li>
+          <li>Contributed to a RAG pipeline (OpenAI + LangChain) powering intelligent health assistants for League's care platform.</li>
+        </ul>
+        <div class="stackrow">
+          <span class="chip">AWS (S3/Glue/Redshift)</span><span class="chip">TensorFlow</span><span class="chip">BERT / spaCy</span><span class="chip">LangChain</span><span class="chip">Apache Iceberg</span>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<section class="sec reveal" id="skills">
+  <div class="wrap">
+    <div class="sec-head"><span class="idx mono">02</span><h2>Technical Skills</h2><div class="rule"></div></div>
+    <div class="skills-grid">
+      <div class="skillcard">
+        <h3>AI / ML</h3>
+        <span class="chip">LangGraph</span><span class="chip">LangChain</span><span class="chip">RAG</span><span class="chip">Agentic AI</span><span class="chip">Multi-Agent Orchestration</span><span class="chip">HITL Design</span><span class="chip">Weaviate</span><span class="chip">Hugging Face</span><span class="chip">XGBoost</span><span class="chip">Scikit-learn</span>
+      </div>
+      <div class="skillcard">
+        <h3>MLOps</h3>
+        <span class="chip">MLflow</span><span class="chip">Model Registry</span><span class="chip">Experiment Tracking</span><span class="chip">Drift Monitoring</span><span class="chip">Automated Retraining</span><span class="chip">GitHub Actions</span><span class="chip">Azure ML Endpoints</span>
+      </div>
+      <div class="skillcard">
+        <h3>Azure</h3>
+        <span class="chip">Azure AI Foundry</span><span class="chip">Azure ML</span><span class="chip">Azure Data Factory</span><span class="chip">Microsoft Fabric</span><span class="chip">Synapse Analytics</span><span class="chip">Azure OpenAI</span><span class="chip">Prompt Flow</span>
+      </div>
+      <div class="skillcard">
+        <h3>AWS</h3>
+        <span class="chip">EMR</span><span class="chip">Glue</span><span class="chip">Redshift</span><span class="chip">S3</span><span class="chip">Athena</span><span class="chip">DMS</span><span class="chip">MWAA / Airflow</span><span class="chip">SNS</span><span class="chip">KMS</span><span class="chip">IAM</span>
+      </div>
+      <div class="skillcard">
+        <h3>Data Engineering</h3>
+        <span class="chip">PySpark</span><span class="chip">Delta Lake</span><span class="chip">Apache Iceberg</span><span class="chip">Medallion Architecture</span><span class="chip">CDC</span><span class="chip">ETL/ELT</span><span class="chip">Snowflake</span>
+      </div>
+      <div class="skillcard">
+        <h3>Languages & Governance</h3>
+        <span class="chip">Python</span><span class="chip">SQL</span><span class="chip">FastAPI</span><span class="chip">Streamlit</span><span class="chip">Docker</span><span class="chip">IAM/RBAC</span><span class="chip">KMS Encryption</span><span class="chip">Data Lineage</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="sec reveal" id="education">
+  <div class="wrap">
+    <div class="sec-head"><span class="idx mono">03</span><h2>Education & Certifications</h2><div class="rule"></div></div>
+    <div class="split">
+      <div class="edu-card">
+        <h3>MS, Computer & Information Sciences</h3>
+        <div class="meta">University of North Texas · Aug 2022 — May 2024 · Denton, TX</div>
+        <p>Applied ML/AI coursework and research, including a GenAI RAG pipeline built with a professor and TA work for the Big Data course covering Hadoop and Spark.</p>
+      </div>
+      <div class="cert-list">
+        <div class="cert-item"><span class="name">AWS Certified Data Engineer</span><span class="org">Professional</span></div>
+        <div class="cert-item"><span class="name">Microsoft Certified: Azure Data Engineer Associate</span><span class="org">DP-203</span></div>
+        <div class="cert-item"><span class="name">Databricks Certified Data Engineer</span><span class="org">Associate</span></div>
+        <div class="cert-item"><span class="name">Structured Query Language (SQL)</span><span class="org">Coursera</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="contact reveal" id="contact">
+  <div class="wrap">
+    <h2>Let's build something reliable.</h2>
+    <p>Open to Generative AI / Agentic AI engineering roles — healthcare, life sciences, and beyond.</p>
+    <div class="hero-cta" style="justify-content:center; display:flex;">
+      <a class="btn btn-primary" href="mailto:meghanapentyala.work@gmail.com">✉ Email me</a>
+      <a class="btn btn-ghost" href="tel:+19408433064">📞 +1 940-843-3064</a>
+      <a class="btn btn-ghost" href="https://www.linkedin.com/in/meghana-pentyala-00a146198" target="_blank">LinkedIn ↗</a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <span>© 2026 Meghana Pentyala</span>
+    <span>Built with intent, not a template.</span>
+  </div>
+</footer>
+
+<script>
+  const revealEls = document.querySelectorAll('.reveal');
+  const io = new IntersectionObserver((entries)=>{
+    entries.forEach(e=>{ if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); } });
+  }, { threshold: 0.12 });
+  revealEls.forEach(el=>io.observe(el));
+</script>
+
+</body>
+</html>
