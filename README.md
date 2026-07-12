@@ -333,9 +333,24 @@
       <h1>Building <b>agentic AI systems</b> for high-stakes clinical decisions.</h1>
       <p class="lede">Generative AI Engineer with 4+ years across the ML/GenAI lifecycle — RAG pipelines, multi-agent orchestration, and clinical decision support built on real EHR (FHIR) data. Currently designing LangGraph systems at Capgemini.</p>
       <div class="hero-cta">
-        <a class="btn btn-primary" href="mailto:meghanapentyala.work@gmail.com">✉ meghanapentyala.work@gmail.com</a>
-        <a class="btn btn-ghost" href="https://www.linkedin.com/in/meghana-pentyala-00a146198" target="_blank">LinkedIn ↗</a>
-      </div>
+
+  <a class="btn btn-primary" href="#projects">
+    🚀 View Projects
+  </a>
+
+  <a class="btn btn-ghost" href="assets/resume.pdf" target="_blank">
+    📄 Resume
+  </a>
+
+  <a class="btn btn-ghost" href="mailto:meghanapentyala.work@gmail.com">
+    ✉ Email
+  </a>
+
+  <a class="btn btn-ghost" href="https://www.linkedin.com/in/meghana-pentyala-00a146198" target="_blank">
+    LinkedIn ↗
+  </a>
+
+</div>
       <div class="hero-meta">
         <span><b>4+ yrs</b> experience</span>
         <span><b>Open to relocate</b> · anywhere in USA</span>
