@@ -496,7 +496,364 @@
     </div>
   </div>
 </section>
+<style>
+  .projects-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 22px;
+  }
 
+  .project-card {
+    --project-color: var(--c-retrieval);
+    display: flex;
+    flex-direction: column;
+    min-height: 290px;
+    padding: 26px;
+    color: var(--text);
+    text-decoration: none;
+    background: linear-gradient(
+      145deg,
+      color-mix(in srgb, var(--project-color) 7%, var(--surface)),
+      var(--surface)
+    );
+    border: 1px solid var(--border-soft);
+    border-top: 2px solid var(--project-color);
+    border-radius: var(--radius);
+    backdrop-filter: blur(10px);
+    position: relative;
+    overflow: hidden;
+    transition:
+      transform 0.25s ease,
+      border-color 0.25s ease,
+      box-shadow 0.25s ease;
+  }
+
+  .project-card:nth-child(1) {
+    --project-color: var(--c-orchestration);
+  }
+
+  .project-card:nth-child(2) {
+    --project-color: var(--c-retrieval);
+  }
+
+  .project-card:nth-child(3) {
+    --project-color: var(--c-clinical);
+  }
+
+  .project-card:nth-child(4) {
+    --project-color: var(--c-ml);
+  }
+
+  .project-card:nth-child(5) {
+    --project-color: var(--c-cloud);
+  }
+
+  .project-card:nth-child(6) {
+    --project-color: var(--c-retrieval);
+  }
+
+  .project-card::after {
+    content: "";
+    position: absolute;
+    width: 180px;
+    height: 180px;
+    top: -100px;
+    right: -80px;
+    border-radius: 50%;
+    background: var(--project-color);
+    opacity: 0.09;
+    filter: blur(32px);
+    transition: opacity 0.25s, transform 0.25s;
+  }
+
+  .project-card:hover,
+  .project-card:focus {
+    transform: translateY(-5px);
+    border-color: var(--project-color);
+    box-shadow: 0 22px 50px -28px var(--project-color);
+    outline: none;
+  }
+
+  .project-card:hover::after {
+    opacity: 0.17;
+    transform: scale(1.12);
+  }
+
+  .project-top {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 20px;
+  }
+
+  .project-number {
+    font-family: "JetBrains Mono", monospace;
+    font-size: 11px;
+    color: var(--project-color);
+    letter-spacing: 0.08em;
+  }
+
+  .project-arrow {
+    width: 34px;
+    height: 34px;
+    display: grid;
+    place-items: center;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    color: var(--project-color);
+    font-family: "JetBrains Mono", monospace;
+  }
+
+  .project-card h3 {
+    max-width: 90%;
+    margin-bottom: 12px;
+    font-family: "Space Grotesk", sans-serif;
+    font-size: 20px;
+    line-height: 1.25;
+  }
+
+  .project-card p {
+    margin-bottom: 20px;
+    color: var(--text-dim);
+    font-size: 14px;
+  }
+
+  .project-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 7px;
+    margin-top: auto;
+    margin-bottom: 22px;
+  }
+
+  .project-tags span {
+    padding: 4px 9px;
+    color: var(--text-faint);
+    background: rgba(255, 255, 255, 0.02);
+    border: 1px solid var(--border);
+    border-radius: 5px;
+    font-family: "JetBrains Mono", monospace;
+    font-size: 10.5px;
+  }
+
+  .project-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    width: max-content;
+    color: var(--project-color);
+    font-family: "JetBrains Mono", monospace;
+    font-size: 12px;
+    position: relative;
+    z-index: 1;
+  }
+
+  @media (max-width: 880px) {
+    .projects-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>
+
+<section class="sec reveal" id="projects">
+  <div class="wrap">
+
+    <div class="sec-head">
+      <span class="idx mono">02</span>
+      <h2>Featured Projects</h2>
+      <div class="rule"></div>
+    </div>
+
+    <div class="projects-grid">
+
+      <!-- PROJECT 1 -->
+      <a
+        class="project-card"
+        href="https://github.com/pentyala123/life-sciences-multi-agent-chatbot"
+        target="_blank"
+        rel="noopener noreferrer"
+        aria-label="Open Life Sciences Multi-Agent AI Chatbot repository"
+      >
+        <div class="project-top">
+          <span class="project-number">PROJECT / 01</span>
+          <span class="project-arrow">↗</span>
+        </div>
+
+        <h3>Life Sciences Multi-Agent AI Chatbot</h3>
+
+        <p>
+          Retrieval-grounded assistant that routes life-sciences questions
+          to clinical-trial, drug-interaction, regulatory, and
+          pharmacovigilance specialist pathways.
+        </p>
+
+        <div class="project-tags">
+          <span>Multi-Agent</span>
+          <span>RAG</span>
+          <span>OpenAI</span>
+          <span>FastAPI</span>
+        </div>
+
+        <span class="project-link">View repository ↗</span>
+      </a>
+
+      <!-- PROJECT 2 -->
+      <a
+        class="project-card"
+        href="https://github.com/pentyala123/enterprise-clinical-knowledge-assistant"
+        target="_blank"
+        rel="noopener noreferrer"
+        aria-label="Open Enterprise Clinical Knowledge Assistant repository"
+      >
+        <div class="project-top">
+          <span class="project-number">PROJECT / 02</span>
+          <span class="project-arrow">↗</span>
+        </div>
+
+        <h3>Enterprise Clinical Knowledge Assistant</h3>
+
+        <p>
+          Clinical RAG platform for retrieving and grounding responses in
+          curated healthcare knowledge with transparent evidence and
+          responsible-AI controls.
+        </p>
+
+        <div class="project-tags">
+          <span>Clinical RAG</span>
+          <span>LangChain</span>
+          <span>FastAPI</span>
+          <span>Docker</span>
+        </div>
+
+        <span class="project-link">View repository ↗</span>
+      </a>
+
+      <!-- PROJECT 3 -->
+      <a
+        class="project-card"
+        href="https://github.com/pentyala123/ai-doctor-consultation-platform"
+        target="_blank"
+        rel="noopener noreferrer"
+        aria-label="Open AI Doctor Consultation Platform repository"
+      >
+        <div class="project-top">
+          <span class="project-number">PROJECT / 03</span>
+          <span class="project-arrow">↗</span>
+        </div>
+
+        <h3>AI-Powered Doctor Consultation Platform</h3>
+
+        <p>
+          Safety-focused consultation workflow with symptom-based routing,
+          specialty matching, fictional doctor recommendations, and
+          constrained consultation summaries.
+        </p>
+
+        <div class="project-tags">
+          <span>Generative AI</span>
+          <span>Healthcare</span>
+          <span>FastAPI</span>
+          <span>Streamlit</span>
+        </div>
+
+        <span class="project-link">View repository ↗</span>
+      </a>
+
+      <!-- PROJECT 4 -->
+      <a
+        class="project-card"
+        href="https://github.com/pentyala123/credit-card-fraud-detection-system"
+        target="_blank"
+        rel="noopener noreferrer"
+        aria-label="Open Credit Card Fraud Detection System repository"
+      >
+        <div class="project-top">
+          <span class="project-number">PROJECT / 04</span>
+          <span class="project-arrow">↗</span>
+        </div>
+
+        <h3>Credit Card Fraud Detection System</h3>
+
+        <p>
+          Fraud-risk pipeline combining behavioral features, Random Forest
+          or XGBoost classification, anomaly detection, and
+          false-positive-aware thresholding.
+        </p>
+
+        <div class="project-tags">
+          <span>XGBoost</span>
+          <span>Random Forest</span>
+          <span>Isolation Forest</span>
+          <span>Machine Learning</span>
+        </div>
+
+        <span class="project-link">View repository ↗</span>
+      </a>
+
+      <!-- PROJECT 5 -->
+      <a
+        class="project-card"
+        href="https://github.com/pentyala123/mental-health-risk-intelligence-platform"
+        target="_blank"
+        rel="noopener noreferrer"
+        aria-label="Open Mental Health Risk Intelligence Platform repository"
+      >
+        <div class="project-top">
+          <span class="project-number">PROJECT / 05</span>
+          <span class="project-arrow">↗</span>
+        </div>
+
+        <h3>Mental Health Risk Intelligence Platform</h3>
+
+        <p>
+          Explainable synthetic-data workflow using longitudinal features
+          and NLP signals to prioritize records for qualified human review.
+        </p>
+
+        <div class="project-tags">
+          <span>NLP</span>
+          <span>Risk Intelligence</span>
+          <span>FastAPI</span>
+          <span>Responsible AI</span>
+        </div>
+
+        <span class="project-link">View repository ↗</span>
+      </a>
+
+      <!-- PROJECT 6 -->
+      <a
+        class="project-card"
+        href="https://github.com/pentyala123/digital-healthcare-experience-platform"
+        target="_blank"
+        rel="noopener noreferrer"
+        aria-label="Open Digital Healthcare Experience Platform repository"
+      >
+        <div class="project-top">
+          <span class="project-number">PROJECT / 06</span>
+          <span class="project-arrow">↗</span>
+        </div>
+
+        <h3>Digital Healthcare Experience Platform</h3>
+
+        <p>
+          End-to-end digital care journey demonstrating provider discovery,
+          appointment workflows, patient progress, feedback, and experience
+          analytics.
+        </p>
+
+        <div class="project-tags">
+          <span>Digital Health</span>
+          <span>FastAPI</span>
+          <span>Streamlit</span>
+          <span>REST APIs</span>
+        </div>
+
+        <span class="project-link">View repository ↗</span>
+      </a>
+
+    </div>
+  </div>
+</section>
 <section class="sec reveal" id="skills">
   <div class="wrap">
     <div class="sec-head"><span class="idx mono">02</span><h2>Technical Skills</h2><div class="rule"></div></div>
